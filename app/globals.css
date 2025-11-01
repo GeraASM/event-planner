@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0b1120;
+  --color-primary: #3b82f6;
+  --color-secondary: #06b6d4;
+  --color-foreground: #f1f5f9;
+  --color-muted: #94a3b8;
+}
+
+
+@layer components {
+  .card {
+    @apply bg-slate-800 p-8 border border-slate-700 rounded-lg shadow-lg;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 border border-slate-600 rounded-md bg-slate-800 text-foreground placeholder-muted focus:outline-0 focus:ring-1  focus:ring-primary ;
+  }
+
+  .btn-submit {
+    @apply bg-primary text-background px-4 py-2 rounded-md font-medium hover:bg-primary/90 transition-colors;
+  }
+  
+  .btn-cancel {
+    @apply bg-slate-400 text-background px-4 py-2 rounded-md font-medium hover:bg-slate-500/90 transition-colors;
+    
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-background px-4 py-2 rounded-md font-medium hover:bg-secondary/20 hover:text-secondary cursor-pointer transition-colors;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 text-background px-4 py-2 rounded-md font-medium hover:bg-red-500/20 hover:text-red-600 cursor-pointer transition-colors;
+  }
+}
