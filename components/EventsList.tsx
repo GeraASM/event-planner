@@ -4,6 +4,7 @@ import {format} from "date-fns"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { Event } from "@/lib/models";
+import Image from "next/image";
 
 
 
@@ -62,22 +63,22 @@ export default function EventsList({events, searchParams, isAuthenticated}: Even
                                     <h3 className="text-xl font-semibold text-foreground mb-2">{event.title}</h3>
                                     <p className="text-muted mb-4">{event.description}</p>
                                     <div className="flex gap-2">
-                                        <img className="w-5 h-5 object-contain" src="/assets/date.svg" alt="Date" />
+                                        <Image width={100} height={100} className="w-5 h-5 object-contain" src="/assets/date.svg" alt="Date" />
                                         <p className="text-muted">
                                             {format(new Date(event.date), "PPP 'at' p")}
                                         </p>
 
                                     </div>
                                     <div className="flex gap-2 items-center">
-                                        <img className="w-5 h-5 object-contain" src="/assets/location.svg" alt="Location" />
+                                        <Image width={100} height={100} className="w-5 h-5 object-contain" src="/assets/location.svg" alt="Location" />
                                         <p className="text-muted">{event.location}</p>
                                     </div>
                                     <div className="flex gap-2 items-center">
-                                        <img className="w-5 h-5 object-contain" src="/assets/people.svg" alt="Members" />
+                                        <Image width={100} height={100} className="w-5 h-5 object-contain" src="/assets/people.svg" alt="Members" />
                                         <p className="text-muted">{event.maxAttendees}</p>
                                     </div>
                                     <div className="flex gap-2 items-center">
-                                        <img className="w-5 h-5 object-contain" src="/assets/people.svg" alt="User" />
+                                        <Image width={100} height={100} className="w-5 h-5 object-contain" src="/assets/people.svg" alt="User" />
                                         <p className="text-muted">{event.user.name || "unknown"}</p>
                                     </div>
                                     <div className="mt-2">

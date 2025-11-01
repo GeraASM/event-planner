@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
-export async function GET(request: NextRequest, {params}: {params: {eventId: string}}) {
+export async function GET(request: NextRequest, {params}: { params: Promise<{ eventId: string }> }) {
     try {
         const {eventId} = await params;
         const event = await prisma.event.findUnique({

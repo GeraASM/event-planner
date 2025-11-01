@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Session } from "next-auth";
 import { logout } from "@/lib/auth-actions";
+import Image from "next/image";
 
 export default function Navbar({session}: {session?: Session | null}) {
     const [btnActive, setBtnActive] = useState<boolean>(false);
@@ -15,7 +16,7 @@ export default function Navbar({session}: {session?: Session | null}) {
                     <div className="flex justify-between">
                             <Link className="text-primary text-xl font-bold" href={"/"}>Event Planner</Link>
                         <button onClick={() => setBtnActive(prev => !prev)}  className="cursor-pointer md:hidden p-2 rounded bg-foreground hover:bg-primary focus:outline-none focus:text-primary" >
-                            <img className="h-5 w-5" src="/assets/hamburger.svg" alt="Hamburger" />
+                            <Image className="h-5 w-5" width={100} height={100} src="/assets/hamburger.svg" alt="Hamburger" />
                         </button>
                     </div>
                     {

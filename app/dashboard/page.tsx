@@ -1,4 +1,5 @@
 import { auth } from "@/auth"
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 interface Count {
@@ -71,6 +72,7 @@ export default async function DashboardPage() {
     return (
         <div className="space-y-8">
             <div>
+                
                 <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
                 <p className="text-muted mt-2">Welcome back {session.user.name || session.user.email} </p>
             </div>
@@ -115,13 +117,13 @@ export default async function DashboardPage() {
                                 <p className="text-muted mb-4">{event.description}</p>
                                 <div className="space-y-2 text-sm text-muted mb-4">
                                     <div className="flex items-center gap-2">
-                                        <img src="/assets/calendar.svg" alt="Calendar" />
+                                        <Image width={20} height={20} src="/assets/calendar.svg" alt="Calendar" />
                                         <p className="text-muted">{dateFormatEU.format(new Date(event.date))}</p>
                                     </div>
                                 </div>
                                 <div className="space-y-2 text-sm text-muted mb-4">
                                     <div className="flex items-center gap-2">
-                                        <img src="/assets/people.svg" alt="Calendar" />
+                                        <Image width={20} height={20} src="/assets/people.svg" alt="Calendar" />
                                         <p className="text-muted">{event._count.rsvps} RSVPs</p>
                                     </div>
                                 </div>
@@ -167,11 +169,11 @@ export default async function DashboardPage() {
                                     {rsvp.event.description}
                                 </div>
                                 <div className="flex gap-2 items-center">
-                                     <img src="/assets/calendar.svg" alt="Calendar" />
+                                     <Image height={20} width={20} src="/assets/calendar.svg" alt="Calendar" />
                                     <p className="text-muted">{dateFormatEU.format(new Date(rsvp.event.date))}</p>
                                 </div>
                                 <div className="text-muted mb-2 text-center flex items-center gap-2">
-                                    <img src="/assets/people.svg" alt="Calendar" />
+                                    <Image height={20} width={20} src="/assets/people.svg" alt="Calendar" />
                                     <p>By {rsvp.event.user.name}</p>
                                 </div>
                                 <Link className="btn-submit w-full" href={`/events/${rsvp.event.id}`}>View Event</Link>

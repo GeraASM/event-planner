@@ -50,9 +50,9 @@ export default function  RSVPButtons({eventId, currentRSVP}: RSVPButtonsProps) {
         <div className="space-y-4">
             <h3 className="text-lg font-semibold text-foreground">RSVP this event</h3>
             <div className="flex flex-wrap gap-3">
-                <button onClick={() => handleRSVP("GOING")} className={getButtonClass("GOING")}>GOING</button>
-                <button onClick={() => handleRSVP("NOT_GOING")} className={getButtonClass("NOT_GOING")}>NOT GOING</button>
-                <button onClick={() => handleRSVP("MAYBE")} className={getButtonClass("MAYBE")}>MAYBE</button>
+                <button disabled={isLoading} onClick={() => handleRSVP("GOING")} className={getButtonClass("GOING")}>GOING</button>
+                <button disabled={isLoading} onClick={() => handleRSVP("NOT_GOING")} className={getButtonClass("NOT_GOING")}>NOT GOING</button>
+                <button disabled={isLoading} onClick={() => handleRSVP("MAYBE")} className={getButtonClass("MAYBE")}>MAYBE</button>
             </div>
         </div>
     )

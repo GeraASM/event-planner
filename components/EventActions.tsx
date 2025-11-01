@@ -7,7 +7,7 @@ interface EventActionsProps {
     isOwner: boolean;
 
 }
-export default function EventActions({eventId, isOwner}: EventActionsProps) {
+export default function EventActions({eventId}: EventActionsProps) {
     const router = useRouter();
     const [isDeleting, setIsDeleting] = useState<boolean>(false);
     const handleDelete = async () => {
