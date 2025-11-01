@@ -5,6 +5,17 @@ import { z, ZodError } from "zod";
 import { prisma } from "./prisma";
 import { revalidateTag } from "next/cache";
 import type {RVSPStatus} from "@/lib/models";
+export interface Event {
+    id: string;
+    title: string;
+    description: string;
+    date: Date;
+    location: string;
+    isPublic: boolean;
+    maxAttendees: number | null;
+    userId: string;
+
+}
 
 const eventSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -27,27 +38,26 @@ export async function createEvent(prevState: any, formData: FormData) {
       description: formData.get("description")?.toString() || "",
       date: formData.get("date")?.toString() || "",
       location: formData.get("location")?.toString() || "",
-      maxAttendees: formData.get("maxAttendees")?.toString() || undefined,
+      maxAttendees: formData.get("maxAttendees")?.toString() || null,
       isPublic: formData.get("isPublic")?.toString(),         // aquí recibe un "on"
     };
 
-    console.log("Form data:", rawData);
-
+   
     const validatedData = eventSchema.parse(rawData);
 
     const event = await prisma.event.create({
-      data: {
-        title: validatedData.title,
-        description: validatedData.description,
-        date: new Date(validatedData.date),
-        location: validatedData.location,
-        maxAttendees: validatedData.maxAttendees
-          ? Number(validatedData.maxAttendees)
-          : null,
-        isPublic: validatedData.isPublic === "on" || validatedData.isPublic === "true",
-        userId: session.user.id,
-      },
-    });
+        data: {
+          title: validatedData.title,
+          description: validatedData.description,
+          date: new Date(validatedData.date),
+          location: validatedData.location,
+          maxAttendees: validatedData.maxAttendees
+            ? Number(validatedData.maxAttendees)
+            : null,
+          isPublic: validatedData.isPublic === "on" || validatedData.isPublic === "true",
+          userId: session!.user!.id!, // ✅ Now definitely a string
+        },
+      });
 
     return { success: true, eventId: event.id, error: "" };
   } catch (error) {
@@ -58,7 +68,6 @@ export async function createEvent(prevState: any, formData: FormData) {
         error: "Validation failed",
       };
     }
-
     console.error("Error creating event:", error);
     return {
       success: false,
@@ -121,9 +130,9 @@ export async function rsvpToEvent(eventId: string, status: RVSPStatus) {
       return ({success: false, error: "Event is not public"});
     }
 
-    if (existingEvent.userId !== session.user.id) {
-      return {success: false, error: "You cannot RSVP to this event"}
-    }
+  // if (existingEvent.userId == session.user.id) {
+  //   return {success: false, error: "You cannot RSVP to this event"}
+  // }
 
     const existingRSVP = await prisma.rSVP.findUnique({
       where: {

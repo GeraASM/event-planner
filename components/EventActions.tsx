@@ -19,10 +19,11 @@ export default function EventActions({eventId}: EventActionsProps) {
                 if ( result?.success) {
                     router.push(`/events`)
                 }
-                await new Promise((resolve) => setTimeout(resolve, 2000))
+                // await new Promise((resolve) => setTimeout(resolve, 2000))
 
                 setIsDeleting(false);
             } catch (error) {
+                console.log("Error while deleting the event", error)
                 alert("Ah error occured while deleting the event")
             } finally {
                 setIsDeleting(false);

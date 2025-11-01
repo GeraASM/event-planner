@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
+import type { Event } from "@/lib/models";
 
 export async function GET(requiest: NextRequest) {
     try {
@@ -23,7 +24,7 @@ export async function GET(requiest: NextRequest) {
             where.date = {gte: new Date()}
 
         }
-        const events = await prisma.event.findMany({
+        const events: Event[] = await prisma.event.findMany({
             where: where,
             include: {user: {select: {name: true, email: true}},
                     rsvps: { include: {
@@ -39,6 +40,7 @@ export async function GET(requiest: NextRequest) {
         });
         return NextResponse.json(events)
     } catch(error) {
+         console.error("Failed to fetch events:", error);
         return NextResponse.json({error: "Failed to fetch events", status: 500})
     }
 }

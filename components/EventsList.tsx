@@ -10,12 +10,10 @@ import Image from "next/image";
 
 interface EventsListProps {
     events: Event[];
-    searchParams: {search?: string; filter?: string};
-    isAuthenticated: boolean;
 }
 
 
-export default function EventsList({events, searchParams, isAuthenticated}: EventsListProps) {
+export default function EventsList({events}: EventsListProps) {
     
     const router = useRouter();
 

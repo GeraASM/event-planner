@@ -24,7 +24,7 @@ export default async function EventsPage({searchParams}: {searchParams: Promise<
 
                 }
             </div>
-            <EventsList events={events} searchParams={{search: "", filter: "All Events"}} isAuthenticated={!!session?.user} />
+            <EventsList events={events} />
         </div>
     )
 }

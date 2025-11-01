@@ -20,7 +20,7 @@ interface Event {
   _count: Count;
 }
 interface EventRSVPS {
-  icreatedAt: string;
+  createdAt: string;
   date: string;
   description: string;
   id: string;
@@ -130,7 +130,7 @@ export default async function DashboardPage() {
                             </div>
                         ))}
                     </div> 
-                    : <div className="card p-8 text-center"><p className="text-muted">You haven't created any events</p></div>}
+                    : <div className="card p-8 text-center"><p className="text-muted">You haven&apos;t created any events</p></div>}
 
                 </div>
             </div>
@@ -181,7 +181,7 @@ export default async function DashboardPage() {
 
                         ))}
                     </div> 
-                    : <div className="card p-8 text-center"><p className="text-muted">You haven't created any events</p></div>}
+                    : <div className="card p-8 text-center"><p className="text-muted">You haven&apos;t created any events</p></div>}
 
                 </div>
             </div>

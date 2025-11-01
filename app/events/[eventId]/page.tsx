@@ -45,7 +45,7 @@ export default async function EventPage({params}: {params: Promise<{eventId: str
                 </div>
                 <div className="grid md:grid-cols-2 text-primary">
                     <div className="space-y-4 flex items-center gap-4">
-                        <Image className="block" src="/assets/calendar.svg" alt="Calendar" />
+                        <Image width={20} height={20} className="block" src="/assets/calendar.svg" alt="Calendar" />
                         <div className="font-medium text-foreground">
                             <p>
                                 {format(new Date(event.date), "EEEE, MMMM do, yyyy")}
@@ -58,7 +58,7 @@ export default async function EventPage({params}: {params: Promise<{eventId: str
                 </div>
                 <div >
                     <div className="flex items-center gap-4 font-medium text-foreground">
-                        <Image className="block w-8 h-8" src="/assets/location.svg" alt="Location" />
+                        <Image width={20} height={20}  className="block w-8 h-8" src="/assets/location.svg" alt="Location" />
                         <p>
                             {event.location}
                         </p>
@@ -66,7 +66,7 @@ export default async function EventPage({params}: {params: Promise<{eventId: str
                 </div>
                 <div >
                     <div className="flex items-center gap-4 font-medium text-foreground">
-                        <Image className="block w-8 h-8" src="/assets/people.svg" alt="Location" />
+                        <Image width={20} height={20} className="block w-8 h-8" src="/assets/people.svg" alt="Location" />
                         <p>
                             Organized by {event.user.name || event.user.email}
                         </p>
@@ -74,7 +74,7 @@ export default async function EventPage({params}: {params: Promise<{eventId: str
                 </div>
                 <div >
                     <div className="flex items-center gap-4 font-medium text-foreground">
-                        <Image className="block w-8 h-8" src="/assets/users.svg" alt="Location" />
+                        <Image width={20} height={20} className="block w-8 h-8" src="/assets/users.svg" alt="Location" />
                         <p>
                            {event._count.rsvps}  attending / {event.maxAttendees} max
                         </p>
@@ -111,8 +111,8 @@ export default async function EventPage({params}: {params: Promise<{eventId: str
                                    <div>
                                         <h3 className="text-lg font-semibold  text-green-400 mb-3">Going ({goingRSVPs.length})</h3>
                                         <div className="space-y-2">
-                                            {goingRSVPs.map((rsvp) => (
-                                                <div className="flex items-center gap-2">
+                                            {goingRSVPs.map((rsvp, key:number) => (
+                                                <div key={key} className="flex items-center gap-2">
                                                     <div className="w-2 h-2 bg-green-400 rounded-full">
                                                     </div>
 
