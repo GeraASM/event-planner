@@ -51,14 +51,14 @@ export default async function DashboardPage() {
             redirect("/login")
     }
 
-    const rsvpsEventsRes = await fetch("http:localhost:3000/api/dashboard/rsvps", {
+    const rsvpsEventsRes = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/dashboard/rsvps`, {
         next: { tags: ["rsvps"] },
         credentials: "include",
     });
 
     const rsvpsEvents: RSVPS[] = rsvpsEventsRes.ok ? await rsvpsEventsRes.json() : [];
 
-   const userEventsRes = await fetch("http:localhost:3000/api/dashboard/events", {
+   const userEventsRes = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/dashboard/events`, {
     next: { tags: ["events"] },
     credentials: "include",
 });

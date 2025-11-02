@@ -7,7 +7,7 @@ export default async function EventsPage({searchParams}: {searchParams: Promise<
     const params = new URLSearchParams();
     if (search) params.set("search", search);
     if (filter) params.set("filter", filter);
-    const events = await fetch(`http://localhost:3000/api/events?${params.toString()}`, {next: {tags: ['events']}}).then(res =>{
+    const events = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/events?${params.toString()}`, {next: {tags: ['events']}}).then(res =>{
         if (res.ok) {return res.json() || [];}
     } );
     console.log(events);

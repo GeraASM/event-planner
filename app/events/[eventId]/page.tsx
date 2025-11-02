@@ -9,7 +9,7 @@ import Image from "next/image";
 export default async function EventPage({params}: {params: Promise<{eventId: string}>}) {
     const session = await auth()
     const {eventId} = await params;
-    const eventResponse = await fetch(`http://localhost:3000/api/events/${eventId}`, {next: {tags: ["events"]}});
+    const eventResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/events/${eventId}`, {next: {tags: ["events"]}});
     if (!eventResponse.ok) {
         notFound()
     }

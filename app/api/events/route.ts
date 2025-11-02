@@ -48,7 +48,7 @@ export async function GET(requiest: NextRequest) {
             where.date = {lt: new Date()}
         } else if (filter === 'Upcoming') {
             where.date = {gte: new Date()}
-
+            
         }
         const events: Event[] = await prisma.event.findMany({
             where: where,
