@@ -26,7 +26,13 @@ const eventSchema = z.object({
   isPublic: z.union([z.literal("on"), z.literal("true")]).optional(), // si usas checkbox
 });
 
-export async function createEvent(prevState: any, formData: FormData) {
+interface EventActionState {
+  success: boolean;
+  error: string;
+  eventId: string | null;
+}
+
+export async function createEvent(_prevState: EventActionState, formData: FormData) {
   try {
     const session = await auth();
     if (!session?.user) {
